@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import Show from './show';
-import AddBook from './AddBook';
+import NavBar from './NavBar'
+import Home from './Home'
+import AddBook from './AddBook'
+import { BrowserRouter, Route, } from 'react-router-dom' 
 
 
 class App extends Component {
@@ -19,15 +21,38 @@ class App extends Component {
     })
     console.log(booksc);
   }
+  deleteBook = (id) => {
+    let booksc = this.state.books.filter(book => { 
+      return book.id !== id 
+    }) // (nondestructive to array) cycles through each book, compares id, adds book to new array if ids dont match
+    this.setState({
+      books: booksc
+    })
+  }
+  editBook = (id) => {
+    let booksc = this.state.books.filter(book => { 
+      return book.id !== id 
+    }) // (nondestructive to array) cycles through each book, compares id, adds book to new array if ids dont match
+    this.setState({
+      books: booksc
+    })
+  }
   render() {
     return (
-      <div className="App">
-        <h1>Hello World</h1>
-        <Show books={this.state.books} />
-        <AddBook addBook={this.addBook}/>
+      <BrowserRouter>
+      <div className="App container">
+        <NavBar />
+        <div>
+        <div class="row">
+        <Route exact path='/' render={routeProps => <Home books={this.state.books} editBook={this.editBook} deleteBook={this.deleteBook}/>}/> 
+        <Route path='/AddBook' render={routeProps => <AddBook addBook={this.addBook}/>} />
+        </div>
+        </div>
+        
       </div>
+      </BrowserRouter>
     );
   }
 }
-
+//<AddBook addBook={this.addBook}/>
 export default App;
