@@ -3,6 +3,7 @@ import NavBar from './NavBar'
 import Home from './Home'
 import AddBook from './AddBook'
 import { BrowserRouter, Route, } from 'react-router-dom' 
+import ViewBook from './ViewBook';
 
 
 class App extends Component {
@@ -29,10 +30,10 @@ class App extends Component {
       books: booksc
     })
   }
-  editBook = (id) => {
+  editBook = (id) => { //placeholder - copy of delete
     let booksc = this.state.books.filter(book => { 
       return book.id !== id 
-    }) // (nondestructive to array) cycles through each book, compares id, adds book to new array if ids dont match
+    }) 
     this.setState({
       books: booksc
     })
@@ -46,6 +47,7 @@ class App extends Component {
         <div class="row">
         <Route exact path='/' render={routeProps => <Home books={this.state.books} editBook={this.editBook} deleteBook={this.deleteBook}/>}/> 
         <Route path='/AddBook' render={routeProps => <AddBook addBook={this.addBook}/>} />
+        <Route path='/ViewBook' render={routeProps => <ViewBook books={this.state.books} deleteBook={this.deleteBook}/>} />
         </div>
         </div>
         
@@ -54,5 +56,5 @@ class App extends Component {
     );
   }
 }
-//<AddBook addBook={this.addBook}/>
+
 export default App;

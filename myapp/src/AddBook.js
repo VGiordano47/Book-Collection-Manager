@@ -14,6 +14,7 @@ class AddBook extends Component{
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.addBook(this.state); //takes form items, passes into App.js
+        alert("Book Added to Collection");
     }
     render(){
         return(
@@ -25,7 +26,7 @@ class AddBook extends Component{
                     <input type="text" id="isbn" onChange={this.handleChange}/>
                     <label htmlFor="title">Author:</label>
                     <input type="text" id="author" onChange={this.handleChange}/>
-                    <button>Submit</button>
+                    <button class="btn-small blue-grey lighten-1">Submit</button>
                 </form>
             </div>
         )
