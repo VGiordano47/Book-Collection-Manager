@@ -8,6 +8,7 @@ const Home = ( { books, deleteBook, editBook } ) => { //destructuring shortcut
     const bookList = books.length ? (
 
         books.map(book => {
+            console.log(book);
             return(
                 
                 <div key={book.id}>
@@ -15,7 +16,7 @@ const Home = ( { books, deleteBook, editBook } ) => { //destructuring shortcut
                 <div className="card blue-grey darken-1">
                 <div className="card-content white-text">
                     <span className="card-title">{ book.title }</span>
-                    <NavLink to={{pathname: '/ViewBook', state: {books:books, id:book.id} }}><button className="btn-small blue-grey lighten-1" >View</button></NavLink>
+                    <NavLink params={{id:book}} to={{pathname: '/ViewBook/2', state: {book:book, id:"hello"} }}><button className="btn-small blue-grey lighten-1" >View</button></NavLink>
                     <button className="btn-small blue-grey lighten-1" >Edit</button>
                     <button className="btn-small deep-orange darken-3 right" onClick={()=>{deleteBook(book.id)}}>Delete</button> 
                 </div>

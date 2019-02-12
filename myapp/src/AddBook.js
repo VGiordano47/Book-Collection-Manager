@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {withRouter} from 'react-router-dom';
 
 class AddBook extends Component{
     state ={
@@ -16,7 +17,7 @@ class AddBook extends Component{
         this.props.addBook(this.state); //takes form items, passes into App.js
         alert("Book Added to Collection");
     }
-    render(){
+    render(props){
         return(
             <div>
                 <form onSubmit={this.handleSubmit}>
@@ -26,11 +27,11 @@ class AddBook extends Component{
                     <input type="text" id="isbn" onChange={this.handleChange}/>
                     <label htmlFor="title">Author:</label>
                     <input type="text" id="author" onChange={this.handleChange}/>
-                    <button class="btn-small blue-grey lighten-1">Submit</button>
+                    <button className="btn-small blue-grey lighten-1">Submit</button> 
                 </form>
             </div>
         )
     }
 }
-
-export default AddBook;
+//Cannot seem to redirect back to home page with props.history.push
+export default withRouter(AddBook)
